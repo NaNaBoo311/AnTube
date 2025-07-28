@@ -1,0 +1,29 @@
+/* 
+  The universal selector * means:
+  "Apply these rules to EVERY element on the page"
+*/
+* {
+  margin: 0; /* Remove ALL default outer spacing (margins) */
+  padding: 0; /* Remove ALL default inner spacing (padding) */
+  box-sizing: border-box;
+  /* 
+     Make the box model easier to work with:
+     Now, width & height include padding + border.
+     This makes fixed-width layouts easier to control.
+  */
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #5a5a5a;
+}
+
+img {
+  cursor: pointer;
+}
+
+.flex-div {
+  display: flex;
+  align-items: center;
+}

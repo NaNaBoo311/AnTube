@@ -1,0 +1,46 @@
+nav {
+  padding: 10px 2%;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow behind the navbar */
+  background: #fff;
+  position: sticky; /*Makes the nav "stick" to the top of the page when scrolling.*/
+  top: 0; /* Required for sticky: pins the sticky position to the top edge. */
+  z-index: 10; /* Adds 10px vertical padding (top & bottom), and 2% horizontal padding (left & right). */
+}
+
+.nav-left .menu-icon {
+  width: 30px;
+  margin-right: 25px;
+}
+
+.nav-left .logo {
+  width: 130px;
+}
+
+.nav-middle .search-box {
+  border: 1px solid #ccc;
+  margin-right: 15px;
+  padding: 8px 12px;
+  border-radius: 25px;
+}
+
+.nav-middle .search-box input {
+  width: 400px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.nav-middle .search-box img {
+  width: 15px;
+}
+
+.nav-right img {
+  width: 30px;
+  margin-right: 25px;
+}
+
+.nav-right .user-icon {
+  width: 35px;
+  border-radius: 50%; /*make the logo circle*/
+}
