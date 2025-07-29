@@ -18,8 +18,14 @@ const PlayVideo = () => {
         <div>
           <span>
             <img src={like} alt="" /> 125
+          </span>
+          <span>
             <img src={dislike} alt="" /> 2
+          </span>
+          <span>
             <img src={share} alt="" /> Share
+          </span>
+          <span>
             <img src={save} alt="" /> Save
           </span>
         </div>
@@ -38,6 +44,34 @@ const PlayVideo = () => {
         <p>nooooooooo</p>
         <hr />
         <h4>130 Comments</h4>
+        <div className="comment">
+          <img src={user_profile} alt="" />
+          <div>
+            <h3>
+              Jin <span>1 day ago</span>
+            </h3>
+            <p>Mot ngay nao do meo gi se bi danh mong</p>
+            <div className="comment-action">
+              <img src={like} alt="" />
+              <span>244</span>
+              <img src={dislike} alt="" />
+            </div>
+          </div>
+        </div>
+        <div className="comment">
+          <img src={user_profile} alt="" />
+          <div>
+            <h3>
+              Jin <span>1 day ago</span>
+            </h3>
+            <p>Mot ngay nao do meo gi se bi danh mong</p>
+            <div className="comment-action">
+              <img src={like} alt="" />
+              <span>244</span>
+              <img src={dislike} alt="" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
