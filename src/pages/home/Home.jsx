@@ -2,10 +2,10 @@ import React from "react";
 import "./Home.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 
-const Home = () => {
+const Home = ({ sidebar }) => {
   return (
     <>
-      <Sidebar></Sidebar>
+      <Sidebar sidebar={sidebar}></Sidebar>
     </>
   );
 };
