@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import "./Home.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
