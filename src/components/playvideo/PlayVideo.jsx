@@ -10,7 +10,9 @@ import user_profile from "../../assets/user_profile.jpg";
 import { API_KEY } from "../../data";
 import { value_converter } from "../../data";
 import moment from "moment";
-const PlayVideo = ({ videoId }) => {
+import { useParams } from "react-router-dom";
+const PlayVideo = () => {
+  const { videoId } = useParams();
   const [apiData, setApiData] = useState(null);
   const [channelData, setChannelData] = useState(null);
   const [commentData, setCommentData] = useState([]);
@@ -38,10 +40,11 @@ const PlayVideo = ({ videoId }) => {
 
   useEffect(() => {
     fetchVideoData();
-  }, []);
+  }, [videoId]);
 
   useEffect(() => {
     fetchOtherData();
+    console.log(commentData);
   }, [apiData]);
 
   return (
@@ -103,35 +106,32 @@ const PlayVideo = ({ videoId }) => {
           {apiData ? value_converter(apiData.statistics.commentCount) : ""}{" "}
           Comments
         </h4>
-        {commentData &&
-          commentData.map((item, index) => {
-            return (
-              <div key={index} className="comment">
-                <img
-                  src={
-                    item.snippet.topLevelComment.snippet.authorProfileImageUrl
-                  }
-                  alt=""
-                />
-                <div>
-                  <h3>
-                    {item.snippet.topLevelComment.snippet.authorDisplayName}{" "}
-                    <span>1 day ago</span>
-                  </h3>
-                  <p>{item.snippet.topLevelComment.snippet.textDisplay} </p>
-                  <div className="comment-action">
-                    <img src={like} alt="" />
-                    <span>
-                      {value_converter(
-                        item.snippet.topLevelComment.snippet.likeCount
-                      )}
-                    </span>
-                    <img src={dislike} alt="" />
-                  </div>
+        {commentData.map((item, index) => {
+          return (
+            <div key={index} className="comment">
+              <img
+                src={item.snippet.topLevelComment.snippet.authorProfileImageUrl}
+                alt=""
+              />
+              <div>
+                <h3>
+                  {item.snippet.topLevelComment.snippet.authorDisplayName}
+                  <span>1 day ago</span>
+                </h3>
+                <p>{item.snippet.topLevelComment.snippet.textDisplay} </p>
+                <div className="comment-action">
+                  <img src={like} alt="" />
+                  <span>
+                    {value_converter(
+                      item.snippet.topLevelComment.snippet.likeCount
+                    )}
+                  </span>
+                  <img src={dislike} alt="" />
                 </div>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

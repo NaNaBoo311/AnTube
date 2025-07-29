@@ -18,6 +18,16 @@
 }
 
 .vid-info h4 {
-  font-size: 13px;
+  font-size: 16px;
   margin-bottom: 5px;
+}
+
+.vid-info p {
+  color: #888;
+}
+
+@media (max-width: 900px) {
+  .recommended {
+    flex-basis: 100%;
+  }
 }
