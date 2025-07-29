@@ -2,7 +2,8 @@ nav {
   padding: 10px 2%;
   justify-content: space-between;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow behind the navbar */
-  background: #fff;
+  /* background: #fff; */
+  background: #b33791;
   position: sticky; /*Makes the nav "stick" to the top of the page when scrolling.*/
   top: 0; /* Required for sticky: pins the sticky position to the top edge. */
   z-index: 10; /* Adds 10px vertical padding (top & bottom), and 2% horizontal padding (left & right). */
@@ -18,7 +19,7 @@ nav {
 }
 
 .nav-middle .search-box {
-  border: 1px solid #ccc;
+  border: 1px solid #fff;
   margin-right: 15px;
   padding: 8px 12px;
   border-radius: 25px;
@@ -29,6 +30,11 @@ nav {
   border: 0;
   outline: 0;
   background: transparent;
+  color: #fff;
+}
+
+.nav-middle .search-box input::placeholder {
+  color: #fff;
 }
 
 .nav-middle .search-box img {
