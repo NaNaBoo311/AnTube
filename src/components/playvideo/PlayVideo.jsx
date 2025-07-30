@@ -5,8 +5,6 @@ import like from "../../assets/like.png";
 import dislike from "../../assets/dislike.png";
 import share from "../../assets/share.png";
 import save from "../../assets/save.png";
-import jack from "../../assets/jack.png";
-import user_profile from "../../assets/user_profile.jpg";
 import { API_KEY } from "../../data";
 import { value_converter } from "../../data";
 import moment from "moment";
@@ -19,7 +17,7 @@ const PlayVideo = () => {
 
   const fetchOtherData = async () => {
     //Fetching Channel Data (Channels)
-    const channelData_url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData.snippet.channelId}&key=${API_KEY}`;
+    const channelData_url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData.snippet.channelId}&type=video&key=${API_KEY}`;
     await fetch(channelData_url)
       .then((res) => res.json())
       .then((data) => setChannelData(data.items[0]));
@@ -43,8 +41,9 @@ const PlayVideo = () => {
   }, [videoId]);
 
   useEffect(() => {
-    fetchOtherData();
-    console.log(commentData);
+    if (apiData) {
+      fetchOtherData();
+    }
   }, [apiData]);
 
   return (
@@ -60,7 +59,7 @@ const PlayVideo = () => {
       <h3>{apiData ? apiData.snippet.title : "No Title"}</h3>
       <div className="play-video-info">
         <p>
-          {apiData ? value_converter(apiData.statistics.viewCount) : "No data"}
+          {apiData ? value_converter(apiData.statistics.viewCount) : "No data"}{" "}
           views &bull;{" "}
           {moment(apiData ? apiData.snippet.publishedAt : "No data").fromNow()}
         </p>

@@ -11,6 +11,7 @@
 .side-video-list img {
   flex-basis: 49%;
   width: 50%;
+  border-radius: 12px;
 }
 
 .vid-info {

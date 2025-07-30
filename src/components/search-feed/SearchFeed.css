@@ -1,0 +1,40 @@
+.search-video-list {
+  display: flex;
+  margin-left: 10%;
+  margin-bottom: 15px;
+}
+
+.search-video-list img {
+  width: 450px;
+  border-radius: 15px;
+}
+
+.search-video-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 18px;
+  gap: 5px;
+}
+
+.search-video-info h4 {
+  font-size: large;
+}
+
+.search-video-info p {
+  color: #837e7e;
+  font-size: small;
+}
+
+.search-video-info img {
+  width: 25px;
+  border-radius: 50%;
+}
+
+.search-video-info .channel-name-img {
+  display: flex;
+  align-items: center;
+  color: #837e7e;
+  gap: 8px;
+  font-size: small;
+  margin: 5px 0;
+}

@@ -9,7 +9,7 @@ import notification_icon from "../../assets/notification.png";
 import profile_icon from "../../assets/vuagi.jpg";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ setSidebar }) => {
+const Navbar = ({ setSidebar, setSearch }) => {
   return (
     <nav className="flex-div">
       <div className="nav-left flex-div">
@@ -19,14 +19,22 @@ const Navbar = ({ setSidebar }) => {
           onClick={() => setSidebar((prev) => (prev === false ? true : false))}
           alt=""
         ></img>
-        <Link to="/">
+        <Link to="/" onClick={() => setSearch(null)}>
           <img className="logo" src={logo}></img>
         </Link>
       </div>
 
       <div className="nav-middle flex-div">
         <div className="search-box flex-div">
-          <input type="text" placeholder="Tìm kiếm"></input>
+          <input
+            type="text"
+            placeholder="Tìm kiếm"
+            onKeyDown={(e) => {
+              if (e.key == "Enter") {
+                setSearch(e.target.value);
+              }
+            }}
+          ></input>
           <img src={search_icon} alt=""></img>
         </div>
       </div>

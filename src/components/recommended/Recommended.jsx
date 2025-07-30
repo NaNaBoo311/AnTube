@@ -6,8 +6,11 @@ import { API_KEY } from "../../data";
 import { value_converter } from "../../data";
 const Recommended = ({ categoryId }) => {
   const [apiData, setApiData] = useState([]);
+  // const [videoData, setVideoData] = useState([]);
+  // const [channelData, setChannelData] = useState([]);
 
   const fetchData = async () => {
+    //Video - list most popular
     const relatedVideo_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=45&regionCode=US&videoCategoryId=${categoryId}&key=${API_KEY}`;
     await fetch(relatedVideo_url)
       .then((res) => res.json())
@@ -16,7 +19,8 @@ const Recommended = ({ categoryId }) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+    console.log(apiData);
+  }, [categoryId]);
 
   return (
     <div className="recommended">
