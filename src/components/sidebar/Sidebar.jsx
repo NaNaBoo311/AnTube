@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import "./Sidebar.css";
 import home from "../../assets/home.png";
 import game_icon from "../../assets/game_icon.png";
@@ -16,6 +18,18 @@ import megan from "../../assets/megan.png";
 import cameron from "../../assets/cameron.png";
 
 const Sidebar = ({ sidebar, category, setCategory }) => {
+  const [channels, setChannels] = useState([]);
+
+  useEffect(() => {
+    const fetchChannels = async () => {
+      const res = await fetch(`${import.meta.env.BASE_URL}channels.json`);
+      const data = await res.json();
+      setChannels(data.channels);
+    };
+
+    fetchChannels();
+  }, []);
+
   return (
     <div className={`sidebar ${sidebar ? "" : "small-sidebar"}`}>
       <div className="shortcut-links">
@@ -75,23 +89,18 @@ const Sidebar = ({ sidebar, category, setCategory }) => {
         </div>
         <hr></hr>
       </div>
+
+      {/* Most watched channels (pretend as subscribed channel) */}
       <div className="subscribed-list">
         <h3>Kênh đăng ký</h3>
-        <div className="side-link">
-          <img src={jack} alt="" /> <p>PewDiePie</p>
-        </div>
-        <div className="side-link">
-          <img src={simon} alt="" /> <p>MrBeast</p>
-        </div>
-        <div className="side-link">
-          <img src={tom} alt="" /> <p>Justin Bieber</p>
-        </div>
-        <div className="side-link">
-          <img src={megan} alt="" /> <p>JungKook</p>
-        </div>
-        <div className="side-link">
-          <img src={cameron} alt="" /> <p>PewDiePie</p>
-        </div>
+        {channels.map((channel, index) => {
+          return (
+            <div key={index} className="side-link">
+              <img src={channel.snippet.thumbnails.default.url} alt="" />{" "}
+              <p>{channel.snippet.title}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

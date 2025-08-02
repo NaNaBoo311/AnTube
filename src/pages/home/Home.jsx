@@ -3,7 +3,7 @@ import "./Home.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import SearchFeed from "../../components/search-feed/SearchFeed";
-const Home = ({ sidebar, search, setSearch }) => {
+const Home = ({ sidebar, search, setSearch, channels }) => {
   const [category, setCategory] = useState(0);
 
   return (
@@ -18,7 +18,7 @@ const Home = ({ sidebar, search, setSearch }) => {
         {search ? (
           <SearchFeed search={search} setSearch={setSearch} />
         ) : (
-          <Feed category={category} />
+          <Feed channels={channels} />
         )}
       </div>
     </>
