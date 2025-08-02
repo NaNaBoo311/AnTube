@@ -3,39 +3,49 @@ import { useState } from "react";
 import "./Recommended.css";
 import { Link } from "react-router-dom";
 import { API_KEY } from "../../data";
-import { value_converter } from "../../data";
-const Recommended = ({ categoryId }) => {
-  const [apiData, setApiData] = useState([]);
-  // const [videoData, setVideoData] = useState([]);
-  // const [channelData, setChannelData] = useState([]);
+import { value_converter, shuffleArray } from "../../data";
 
-  const fetchData = async () => {
-    //Video - list most popular
-    const relatedVideo_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=45&regionCode=US&videoCategoryId=${categoryId}&key=${API_KEY}`;
-    await fetch(relatedVideo_url)
-      .then((res) => res.json())
-      .then((data) => setApiData(data.items));
-  };
+const Recommended = ({ channels, videoId }) => {
+  const [recommendedVideos, setRecommendedVideos] = useState([]);
 
   useEffect(() => {
-    fetchData();
-    console.log(apiData);
-  }, [categoryId]);
+    if (!channels || channels.length === 0) return;
+
+    // ✅ Shuffle channels
+    const shuffledChannels = shuffleArray(channels);
+    const selectedChannels = shuffledChannels.slice(0, 10);
+
+    let videos = [];
+
+    selectedChannels.forEach((channel) => {
+      const uploadsVideos = channel.uploadsVideos || [];
+
+      const shuffledVideos = shuffleArray(uploadsVideos);
+      const selectedVideos = shuffledVideos.slice(0, 3);
+
+      videos = videos.concat(selectedVideos);
+    });
+
+    setRecommendedVideos(videos);
+  }, [videoId]);
 
   return (
     <div className="recommended">
-      {apiData.map((item, index) => {
+      {recommendedVideos.map((item, index) => {
+        const snippet = item.snippet;
+        const videoId = snippet?.resourceId?.videoId || item.id;
+
         return (
           <Link
-            to={`/video/${item.snippet.categoryId}/${item.id}`}
+            to={`/video/${videoId}`}
             key={index}
             className="side-video-list"
           >
-            <img src={item.snippet.thumbnails.medium.url} alt="" />
+            <img src={snippet.thumbnails.medium.url} alt="" />
             <div className="vid-info">
-              <h4>{item.snippet.title}</h4>
-              <p>{item.snippet.channelTitle}</p>
-              <p>{value_converter(item.statistics.viewCount)}</p>
+              <h4>{snippet.title}</h4>
+              <p>{snippet.channelTitle}</p>
+              <p>{value_converter(item.statistics?.viewCount || 0)}</p>
             </div>
           </Link>
         );
@@ -43,4 +53,5 @@ const Recommended = ({ categoryId }) => {
     </div>
   );
 };
+
 export default Recommended;

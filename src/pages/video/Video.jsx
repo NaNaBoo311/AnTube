@@ -5,7 +5,7 @@ import "./Video.css";
 import PlayVideo from "../../components/playvideo/PlayVideo";
 import Recommended from "../../components/recommended/Recommended";
 import { API_KEY } from "../../data";
-const Video = ({ search }) => {
+const Video = ({ search, channels }) => {
   const navigate = useNavigate();
   const { videoId } = useParams();
 
@@ -18,7 +18,7 @@ const Video = ({ search }) => {
   return (
     <div className="play-container">
       <PlayVideo videoId={videoId} />
-      <Recommended categoryId={0} />
+      <Recommended videoId={videoId} channels={channels} />
     </div>
   );
 };

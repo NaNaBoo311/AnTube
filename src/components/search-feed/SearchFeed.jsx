@@ -30,7 +30,7 @@ const SearchFeed = ({ search, setSearch }) => {
       {apiData.map((item, index) => {
         return (
           <Link
-            to={`/video/1/${item.id.videoId}`}
+            to={`/video/${item.id.videoId}`}
             className="search-video-list"
             onClick={() => setSearch(null)}
           >
