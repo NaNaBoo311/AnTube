@@ -2,33 +2,9 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import "./Recommended.css";
 import { Link } from "react-router-dom";
-import { API_KEY } from "../../data";
 import { value_converter, shuffleArray } from "../../data";
 
-const Recommended = ({ channels, videoId }) => {
-  const [recommendedVideos, setRecommendedVideos] = useState([]);
-
-  useEffect(() => {
-    if (!channels || channels.length === 0) return;
-
-    // ✅ Shuffle channels
-    const shuffledChannels = shuffleArray(channels);
-    const selectedChannels = shuffledChannels.slice(0, 10);
-
-    let videos = [];
-
-    selectedChannels.forEach((channel) => {
-      const uploadsVideos = channel.uploadsVideos || [];
-
-      const shuffledVideos = shuffleArray(uploadsVideos);
-      const selectedVideos = shuffledVideos.slice(0, 3);
-
-      videos = videos.concat(selectedVideos);
-    });
-
-    setRecommendedVideos(videos);
-  }, [videoId]);
-
+const Recommended = ({ recommendedVideos }) => {
   return (
     <div className="recommended">
       {recommendedVideos.map((item, index) => {
